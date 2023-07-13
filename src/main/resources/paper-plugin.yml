@@ -1,0 +1,4 @@
+name: PKWWorldGen
+version: '${project.version}'
+main: xyz.angeloanan.pkwworldgen.PKWWorldGen
+api-version: '1.20'
