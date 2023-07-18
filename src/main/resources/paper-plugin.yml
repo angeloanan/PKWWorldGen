@@ -3,3 +3,6 @@ version: '${project.version}'
 main: xyz.angeloanan.pkwworldgen.Plugin
 api-version: '1.20'
 load: STARTUP
+authors:
+  - Falink
+website: https://angeloanan.xyz

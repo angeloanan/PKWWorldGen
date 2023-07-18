@@ -1,23 +1,38 @@
 package xyz.angeloanan.pkwworldgen;
 
 import org.bukkit.Material;
+import org.bukkit.generator.BiomeProvider;
 import org.bukkit.generator.ChunkGenerator;
 import org.bukkit.generator.WorldInfo;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Random;
 
 public class PKWChunkGen extends ChunkGenerator {
-  static int STRUCTURE_PATTERN_CHUNK_SIZE_X = 5;
-  static int STRUCTURE_PATTERN_CHUNK_SIZE_Z = 4;
+  public static int STRUCTURE_PATTERN_CHUNK_SIZE_X = 5;
+  public static int STRUCTURE_PATTERN_CHUNK_SIZE_Z = 4;
 
-  static int STRUCTURE_PATTERN_LOWEST_Y = 64;
+  public static int STRUCTURE_PATTERN_LOWEST_Y = 64;
+
+  // ---
+
+  public static BiomeProvider BIOME_PROVIDER = new PKWChunkGenBiomeProvider();
 
   @Override
+  public @Nullable BiomeProvider getDefaultBiomeProvider(@NotNull WorldInfo worldInfo) {
+    return BIOME_PROVIDER;
+  }
+
   // Run in every chunk
   public void generateNoise(WorldInfo worldInfo, Random random, int chunkX, int chunkZ, ChunkData chunkData) {
 
-    int relativePatternX = Math.abs((chunkX % STRUCTURE_PATTERN_CHUNK_SIZE_X) + 1);
-    int relativePatternZ = Math.abs((chunkZ % STRUCTURE_PATTERN_CHUNK_SIZE_Z) + 1);
+    int relativePatternX = chunkX >= 0
+        ? (chunkX % STRUCTURE_PATTERN_CHUNK_SIZE_X) + 1
+        : ((chunkX + 1) % STRUCTURE_PATTERN_CHUNK_SIZE_X) + STRUCTURE_PATTERN_CHUNK_SIZE_X;
+    int relativePatternZ = chunkZ >= 0
+        ? (chunkZ % STRUCTURE_PATTERN_CHUNK_SIZE_Z) + 1
+        : ((chunkZ + 1) % STRUCTURE_PATTERN_CHUNK_SIZE_Z) + STRUCTURE_PATTERN_CHUNK_SIZE_Z;
 
     // Generate boxes
 
@@ -107,6 +122,14 @@ public class PKWChunkGen extends ChunkGenerator {
       chunkData.setBlock(0, STRUCTURE_PATTERN_LOWEST_Y + 11, 11, Material.GOLD_BLOCK);
     }
 
+    // Starting blocks for other chunk
+    if (relativePatternX == 5 && relativePatternZ <= 2) {
+      for (int z = 0; z < (relativePatternZ == 1 ? 16 : 7); z++) {
+        chunkData.setBlock(15, STRUCTURE_PATTERN_LOWEST_Y + 11, z, Material.BARRIER);
+        chunkData.setBlock(14, STRUCTURE_PATTERN_LOWEST_Y + 11, z, Material.BARRIER);
+      }
+    }
+
 
     // Redstone Blocks
     // Bottom right
@@ -122,28 +145,28 @@ public class PKWChunkGen extends ChunkGenerator {
 
     // Screenshot 1 of other chunk ✅
     if (relativePatternX == 5 && relativePatternZ == 1) {
-      chunkData.setBlock(8, STRUCTURE_PATTERN_LOWEST_Y + 16,  11, Material.CUT_COPPER);
+      chunkData.setBlock(8, STRUCTURE_PATTERN_LOWEST_Y + 16, 11, Material.WAXED_CUT_COPPER);
     }
 
-    // Screenshot 2 of othe chunk (left)
+    // Screenshot 2 of other chunk (left)
     if (relativePatternX == 2 && relativePatternZ == 4) {
-      chunkData.setBlock(7, STRUCTURE_PATTERN_LOWEST_Y + 16, 0, Material.CUT_COPPER);
+      chunkData.setBlock(7, STRUCTURE_PATTERN_LOWEST_Y + 16, 0, Material.WAXED_CUT_COPPER);
     }
 
     // Screenshot 3 - Right ✅
     if (relativePatternX == 2 && relativePatternZ == 3) {
-      chunkData.setBlock(7, STRUCTURE_PATTERN_LOWEST_Y + 16, 6, Material.WAXED_EXPOSED_COPPER);
+      chunkData.setBlock(7, STRUCTURE_PATTERN_LOWEST_Y + 16, 6, Material.WAXED_CUT_COPPER);
     }
 
     // Screenshot 4 - Opposite ✅
     if (relativePatternX == 4 && relativePatternZ == 1) {
-      chunkData.setBlock(13, STRUCTURE_PATTERN_LOWEST_Y + 16,  11, Material.CUT_COPPER);
+      chunkData.setBlock(13, STRUCTURE_PATTERN_LOWEST_Y + 16, 11, Material.WAXED_COPPER_BLOCK);
     }
 
     // Screenshot 5 - Above ✅
     if (relativePatternX == 2 && relativePatternZ == 1) {
       chunkData.setBlock(6, STRUCTURE_PATTERN_LOWEST_Y + 28 + 10, 11, Material.BARRIER);
-      chunkData.setBlock(6, STRUCTURE_PATTERN_LOWEST_Y + 28 + 10 + 3, 11, Material.CUT_COPPER);
+      chunkData.setBlock(6, STRUCTURE_PATTERN_LOWEST_Y + 28 + 10 + 3, 11, Material.WAXED_CUT_COPPER);
     }
   }
 }
