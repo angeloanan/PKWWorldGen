@@ -1,4 +1,4 @@
-package xyz.angeloanan.pkwworldgen;
+package xyz.angeloanan.pkwsubmissionutils;
 
 import org.bukkit.GameMode;
 import org.bukkit.Location;
@@ -22,9 +22,9 @@ public class PKWBorderParticleSpawner extends BukkitRunnable {
     double z_c = sphereCenter.z();
 
     double distance = Math.sqrt(
-        Math.pow(x_0 - x_c, 2) +
-            Math.pow(y_0 - y_c, 2) +
-            Math.pow(z_0 - z_c, 2)
+      Math.pow(x_0 - x_c, 2) +
+      Math.pow(y_0 - y_c, 2) +
+      Math.pow(z_0 - z_c, 2)
     );
 
     return distance <= sphereRadius;
@@ -34,6 +34,8 @@ public class PKWBorderParticleSpawner extends BukkitRunnable {
   public void run() {
     plugin.getServer().getOnlinePlayers().forEach(player -> {
       if (player.getGameMode() != GameMode.CREATIVE) return;
+
+      PKWPlot plot = PKWPlot.from(player.getLocation());
 
     });
   }

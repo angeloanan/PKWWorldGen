@@ -1,4 +1,4 @@
-package xyz.angeloanan.pkwworldgen;
+package xyz.angeloanan.pkwsubmissionutils;
 
 import org.bukkit.GameMode;
 import org.bukkit.Location;
@@ -10,16 +10,12 @@ import org.bukkit.event.player.PlayerMoveEvent;
 public class PKWTeleporter implements Listener {
   void teleportToNearestGold(Player player) {
     Location playerLoc = player.getLocation();
-    int chunkX = playerLoc.getBlockX();
-    int chunkZ = playerLoc.getBlockZ();
-
-    int originChunkX = chunkX / (PKWChunkGen.STRUCTURE_PATTERN_CHUNK_SIZE_X * 16);
-    int originChunkZ = chunkZ / (PKWChunkGen.STRUCTURE_PATTERN_CHUNK_SIZE_Z * 16);
+    PKWPlot plot = PKWPlot.from(playerLoc);
 
     playerLoc.set(
-        (originChunkX * PKWChunkGen.STRUCTURE_PATTERN_CHUNK_SIZE_X * 16) - 0.5,
-        PKWChunkGen.STRUCTURE_PATTERN_LOWEST_Y + 12,
-        (originChunkZ * PKWChunkGen.STRUCTURE_PATTERN_CHUNK_SIZE_Z * 16) + 11.5
+        (plot.x * PKWPlot.PLOT_CHUNK_SIZE_X * 16) - 1.5,
+        PKWPlot.STRUCTURE_LOWEST_Y + 12,
+        (plot.z * PKWPlot.PLOT_CHUNK_SIZE_Z * 16) + 11.5
     );
     player.teleport(playerLoc);
     player.setRotation(-90, 0);
@@ -28,7 +24,9 @@ public class PKWTeleporter implements Listener {
   @EventHandler
   void onPlayerVoid(PlayerMoveEvent e) {
     Player player = e.getPlayer();
-    int tpHeight = player.getGameMode() == GameMode.SURVIVAL ? PKWChunkGen.STRUCTURE_PATTERN_LOWEST_Y - 15 : 40;
+    int tpHeight = player.getGameMode() == GameMode.SURVIVAL
+      ? PKWPlot.STRUCTURE_LOWEST_Y - 15
+      : 40;
 
     if (player.getLocation().getY() <= tpHeight) {
       teleportToNearestGold(player);

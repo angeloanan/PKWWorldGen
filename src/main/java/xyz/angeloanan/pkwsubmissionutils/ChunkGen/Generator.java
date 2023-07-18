@@ -1,38 +1,45 @@
-package xyz.angeloanan.pkwworldgen;
+package xyz.angeloanan.pkwsubmissionutils.ChunkGen;
 
+import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.generator.BiomeProvider;
+import org.bukkit.World;
 import org.bukkit.generator.ChunkGenerator;
 import org.bukkit.generator.WorldInfo;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import xyz.angeloanan.pkwsubmissionutils.PKWPlot;
 
 import java.util.Random;
 
-public class PKWChunkGen extends ChunkGenerator {
-  public static int STRUCTURE_PATTERN_CHUNK_SIZE_X = 5;
-  public static int STRUCTURE_PATTERN_CHUNK_SIZE_Z = 4;
+public class Generator extends ChunkGenerator {
+  int STRUCTURE_PATTERN_CHUNK_SIZE_X = PKWPlot.PLOT_CHUNK_SIZE_X;
+  int STRUCTURE_PATTERN_CHUNK_SIZE_Z = PKWPlot.PLOT_CHUNK_SIZE_Z;
 
-  public static int STRUCTURE_PATTERN_LOWEST_Y = 64;
+  int STRUCTURE_PATTERN_LOWEST_Y = PKWPlot.STRUCTURE_LOWEST_Y;
 
   // ---
 
-  public static BiomeProvider BIOME_PROVIDER = new PKWChunkGenBiomeProvider();
+  public static org.bukkit.generator.BiomeProvider BIOME_PROVIDER = new BiomeProvider();
 
   @Override
-  public @Nullable BiomeProvider getDefaultBiomeProvider(@NotNull WorldInfo worldInfo) {
+  public @Nullable org.bukkit.generator.BiomeProvider getDefaultBiomeProvider(@NotNull WorldInfo worldInfo) {
     return BIOME_PROVIDER;
+  }
+
+  @Override
+  public @Nullable Location getFixedSpawnLocation(@NotNull World world, @NotNull Random random) {
+    return new Location(world, 0, STRUCTURE_PATTERN_LOWEST_Y + 13, 11);
   }
 
   // Run in every chunk
   public void generateNoise(WorldInfo worldInfo, Random random, int chunkX, int chunkZ, ChunkData chunkData) {
 
     int relativePatternX = chunkX >= 0
-        ? (chunkX % STRUCTURE_PATTERN_CHUNK_SIZE_X) + 1
-        : ((chunkX + 1) % STRUCTURE_PATTERN_CHUNK_SIZE_X) + STRUCTURE_PATTERN_CHUNK_SIZE_X;
+      ? (chunkX % STRUCTURE_PATTERN_CHUNK_SIZE_X) + 1
+      : ((chunkX + 1) % STRUCTURE_PATTERN_CHUNK_SIZE_X) + STRUCTURE_PATTERN_CHUNK_SIZE_X;
     int relativePatternZ = chunkZ >= 0
-        ? (chunkZ % STRUCTURE_PATTERN_CHUNK_SIZE_Z) + 1
-        : ((chunkZ + 1) % STRUCTURE_PATTERN_CHUNK_SIZE_Z) + STRUCTURE_PATTERN_CHUNK_SIZE_Z;
+      ? (chunkZ % STRUCTURE_PATTERN_CHUNK_SIZE_Z) + 1
+      : ((chunkZ + 1) % STRUCTURE_PATTERN_CHUNK_SIZE_Z) + STRUCTURE_PATTERN_CHUNK_SIZE_Z;
 
     // Generate boxes
 
@@ -125,8 +132,10 @@ public class PKWChunkGen extends ChunkGenerator {
     // Starting blocks for other chunk
     if (relativePatternX == 5 && relativePatternZ <= 2) {
       for (int z = 0; z < (relativePatternZ == 1 ? 16 : 7); z++) {
-        chunkData.setBlock(15, STRUCTURE_PATTERN_LOWEST_Y + 11, z, Material.BARRIER);
-        chunkData.setBlock(14, STRUCTURE_PATTERN_LOWEST_Y + 11, z, Material.BARRIER);
+        chunkData.setBlock(15, STRUCTURE_PATTERN_LOWEST_Y + 11, z, Material.RED_STAINED_GLASS);
+        chunkData.setBlock(14, STRUCTURE_PATTERN_LOWEST_Y + 11, z, Material.WHITE_STAINED_GLASS);
+        chunkData.setBlock(13, STRUCTURE_PATTERN_LOWEST_Y + 11, z, Material.WHITE_STAINED_GLASS);
+        chunkData.setBlock(12, STRUCTURE_PATTERN_LOWEST_Y + 11, z, Material.WHITE_STAINED_GLASS);
       }
     }
 

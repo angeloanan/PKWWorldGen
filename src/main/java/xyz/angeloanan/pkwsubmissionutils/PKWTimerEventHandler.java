@@ -1,4 +1,4 @@
-package xyz.angeloanan.pkwworldgen;
+package xyz.angeloanan.pkwsubmissionutils;
 
 import net.kyori.adventure.key.Key;
 import net.kyori.adventure.sound.Sound;
@@ -71,10 +71,7 @@ public class PKWTimerEventHandler implements Listener {
         int milliseconds = (time * 50) % 1000;
         int seconds = time / 20;
 
-        TextComponent message = Component.text()
-            .content("Finished in " + String.format("%02d", seconds) + "s " + String.format("%03d", milliseconds) + "ms")
-            .color(TextColor.color(0x00FF00))
-            .build();
+        TextComponent message = Component.text().content("Finished in " + String.format("%02d", seconds) + "s " + String.format("%03d", milliseconds) + "ms").color(TextColor.color(0x00FF00)).build();
         player.sendMessage(message);
 
         player.playSound(Sound.sound(Key.key("entity.experience_orb.pickup"), Sound.Source.PLAYER, 1f, 1f));

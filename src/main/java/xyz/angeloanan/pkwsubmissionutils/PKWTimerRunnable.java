@@ -1,4 +1,4 @@
-package xyz.angeloanan.pkwworldgen;
+package xyz.angeloanan.pkwsubmissionutils;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;

@@ -1,14 +1,13 @@
-package xyz.angeloanan.pkwworldgen;
+package xyz.angeloanan.pkwsubmissionutils.ChunkGen;
 
 import org.bukkit.block.Biome;
-import org.bukkit.generator.BiomeProvider;
 import org.bukkit.generator.WorldInfo;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class PKWChunkGenBiomeProvider extends BiomeProvider {
+public class BiomeProvider extends org.bukkit.generator.BiomeProvider {
   static final List<Biome> BIOMES;
 
   static {

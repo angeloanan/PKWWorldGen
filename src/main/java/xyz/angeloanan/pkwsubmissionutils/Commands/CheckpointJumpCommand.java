@@ -1,4 +1,4 @@
-package xyz.angeloanan.pkwworldgen.Commands;
+package xyz.angeloanan.pkwsubmissionutils.Commands;
 
 import co.aikar.commands.BaseCommand;
 import co.aikar.commands.annotation.CommandAlias;
@@ -6,7 +6,7 @@ import co.aikar.commands.annotation.Default;
 import co.aikar.commands.annotation.Dependency;
 import co.aikar.commands.annotation.Description;
 import org.bukkit.entity.Player;
-import xyz.angeloanan.pkwworldgen.Plugin;
+import xyz.angeloanan.pkwsubmissionutils.Plugin;
 
 @CommandAlias("cp")
 @Description("Sets and start a checkpoint jump session")

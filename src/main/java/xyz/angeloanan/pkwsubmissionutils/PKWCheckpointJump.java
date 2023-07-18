@@ -1,4 +1,4 @@
-package xyz.angeloanan.pkwworldgen;
+package xyz.angeloanan.pkwsubmissionutils;
 
 import org.bukkit.GameMode;
 import org.bukkit.Location;
