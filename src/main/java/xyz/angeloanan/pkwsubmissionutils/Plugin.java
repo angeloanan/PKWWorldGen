@@ -29,6 +29,7 @@ public final class Plugin extends JavaPlugin {
     pluginManager.registerEvents(new PKWTeleporter(), this);
     pluginManager.registerEvents(new PKWTimerEventHandler(), this);
     pluginManager.registerEvents(new PKWPlotAnnouncer(), this);
+    pluginManager.registerEvents(new PKWOutOfBoundsHandler(), this);
 
     new PKWBorderParticleSpawner().runTaskTimer(Plugin.THIS, 0, 20);
 

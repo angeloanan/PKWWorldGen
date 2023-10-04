@@ -2,6 +2,7 @@ package xyz.angeloanan.pkwsubmissionutils;
 
 import org.bukkit.Location;
 import org.bukkit.World;
+import org.bukkit.util.Vector;
 
 import java.util.Objects;
 
@@ -10,6 +11,11 @@ public class PKWPlot {
   public static final int PLOT_CHUNK_SIZE_Z = 4;
   public static final int STRUCTURE_LOWEST_Y = 64;
 
+  public static final int MAX_PLOT_X = 10_000;
+
+  public static final int MAX_PLOT_Z = 10_000;
+
+  public static final Vector PLAYER_PLOT_OFFSET = new Vector(14.0, 0.0, 20.0);
 
   /// The X coordinate of the plot
   /// Starting from 0, adding 1 for every (PlotChunkSizeX * 16)

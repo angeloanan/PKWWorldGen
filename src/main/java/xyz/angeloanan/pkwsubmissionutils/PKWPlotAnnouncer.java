@@ -29,7 +29,8 @@ public class PKWPlotAnnouncer implements Listener {
     Player player = e.getPlayer();
 
     PKWPlot prevPlot = playerLocation.get(player.getUniqueId());
-    PKWPlot currentPlotId = PKWPlot.from(player.getLocation());
+    PKWPlot currentPlotId = PKWPlot.from(player.getLocation().add(PKWPlot.PLAYER_PLOT_OFFSET));
+    //                                                        ^ Plot offset, prob need refactor
 
     if (!currentPlotId.equals(prevPlot)) {
       announcePlotId(player, currentPlotId);
@@ -42,7 +43,7 @@ public class PKWPlotAnnouncer implements Listener {
       .text("Visiting plot ")
       .append(
         Component
-          .text(plot.x + ", " + plot.z)
+          .text(String.format("[%d, %d]", plot.x, plot.z))
           .decorate(TextDecoration.BOLD)
       );
 

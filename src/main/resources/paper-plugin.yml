@@ -6,3 +6,10 @@ load: STARTUP
 authors:
   - Falink
 website: https://angeloanan.xyz
+load-after:
+  - name: FastAsyncWorldEdit
+    bootstrap: true
+dependencies:
+  - name: WorldEdit
+    required: true
+    bootstrap: true

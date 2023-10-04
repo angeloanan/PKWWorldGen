@@ -1,0 +1,11 @@
+name: PKWSubmissionUtils
+version: '${project.version}'
+main: xyz.angeloanan.pkwsubmissionutils.Plugin
+author: Falink
+website: https://angeloanan.xyz
+load: STARTUP
+api-version: '1.20'
+depend:
+  - WorldEdit
+  - SQLiteLib
+

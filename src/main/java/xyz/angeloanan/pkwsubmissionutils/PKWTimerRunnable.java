@@ -2,6 +2,7 @@ package xyz.angeloanan.pkwsubmissionutils;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
+import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
@@ -28,7 +29,14 @@ public class PKWTimerRunnable extends BukkitRunnable {
         return;
       }
 
-      TextComponent actionBarText = Component.text(String.format("%02d", time));
+      int milliseconds = (time * 50) % 1000;
+      int seconds = time / 20;
+
+      TextComponent actionBarText = Component.text()
+        .content(String.format("%02ds %03dms", seconds, milliseconds))
+        .build();
+
+
       player.sendActionBar(actionBarText);
 
       playerTimer.put(uuid, time + 1);

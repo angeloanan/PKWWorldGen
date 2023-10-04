@@ -16,5 +16,6 @@ public class CheckpointJumpCommand extends BaseCommand {
 
   @Default
   public void onDefault(Player player) {
+
   }
 }

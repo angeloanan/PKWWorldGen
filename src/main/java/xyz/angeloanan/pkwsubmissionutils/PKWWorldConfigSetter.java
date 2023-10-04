@@ -1,5 +1,6 @@
 package xyz.angeloanan.pkwsubmissionutils;
 
+import org.bukkit.Difficulty;
 import org.bukkit.GameMode;
 import org.bukkit.GameRule;
 import org.bukkit.World;
@@ -35,7 +36,12 @@ public class PKWWorldConfigSetter implements Listener {
 
     world.setGameRule(GameRule.ANNOUNCE_ADVANCEMENTS, false);
 
+    world.setGameRule(GameRule.RANDOM_TICK_SPEED, 0);
+
     world.setTime(6000L);
+
+    world.setDifficulty(Difficulty.PEACEFUL);
+    Plugin.THIS.getServer().setDefaultGameMode(GameMode.CREATIVE);
   }
 
   @EventHandler

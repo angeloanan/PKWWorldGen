@@ -15,6 +15,7 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerGameModeChangeEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+import xyz.angeloanan.pkwsubmissionutils.Events.PlayerVoidOutOfBoundsTeleportEvent;
 
 import java.util.HashMap;
 import java.util.UUID;
@@ -41,6 +42,11 @@ public class PKWTimerEventHandler implements Listener {
 
   @EventHandler
   void onPlayerLogout(PlayerQuitEvent e) {
+    playerTimer.remove(e.getPlayer().getUniqueId());
+  }
+
+  @EventHandler
+  void onPlayerFell(PlayerVoidOutOfBoundsTeleportEvent e) {
     playerTimer.remove(e.getPlayer().getUniqueId());
   }
 

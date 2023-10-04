@@ -28,7 +28,11 @@ public class Generator extends ChunkGenerator {
 
   @Override
   public @Nullable Location getFixedSpawnLocation(@NotNull World world, @NotNull Random random) {
-    return new Location(world, 0, STRUCTURE_PATTERN_LOWEST_Y + 13, 11);
+    Location spawnPoint = new Location(world, 0, STRUCTURE_PATTERN_LOWEST_Y + 13, 10);
+    spawnPoint.setPitch(-90);
+    spawnPoint.setYaw(0);
+
+    return spawnPoint;
   }
 
   // Run in every chunk
