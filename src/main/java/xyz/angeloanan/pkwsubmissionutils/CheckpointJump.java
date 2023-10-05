@@ -19,7 +19,7 @@ class CheckpointData {
   }
 }
 
-public class PKWCheckpointJump implements Listener {
+public class CheckpointJump implements Listener {
   Map<UUID, CheckpointData> playerData;
 
   public void playerEnableCheckpointJump(Player player) {

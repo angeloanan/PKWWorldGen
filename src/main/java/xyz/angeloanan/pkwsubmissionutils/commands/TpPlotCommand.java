@@ -1,4 +1,4 @@
-package xyz.angeloanan.pkwsubmissionutils.Commands;
+package xyz.angeloanan.pkwsubmissionutils.commands;
 
 import co.aikar.commands.BaseCommand;
 import co.aikar.commands.annotation.CommandAlias;
@@ -10,7 +10,7 @@ import net.kyori.adventure.text.format.TextColor;
 import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
-import xyz.angeloanan.pkwsubmissionutils.PKWPlot;
+import xyz.angeloanan.pkwsubmissionutils.utils.Plot;
 
 @CommandAlias("tpplot|plottp|ptp|tpp")
 public class TpPlotCommand extends BaseCommand {
@@ -31,11 +31,11 @@ public class TpPlotCommand extends BaseCommand {
     try {
       int x = Integer.parseInt(args[0]);
       int z = Integer.parseInt(args[1]);
-      PKWPlot plot = new PKWPlot(x, z);
-      Location location = PKWPlot.goldBlock(plot, player.getWorld());
+      Plot plot = new Plot(x, z);
+      Location location = Plot.goldBlock(plot, player.getWorld());
       location.add(0, 2, 0);
 
-      if (plot.x > PKWPlot.MAX_PLOT_X || plot.z > PKWPlot.MAX_PLOT_Z) {
+      if (plot.x > Plot.MAX_PLOT_X || plot.z > Plot.MAX_PLOT_Z) {
         player.sendMessage(
           Component
             .text("Plot ID exceeded limit!")

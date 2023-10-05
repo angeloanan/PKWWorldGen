@@ -1,4 +1,4 @@
-package xyz.angeloanan.pkwsubmissionutils;
+package xyz.angeloanan.pkwsubmissionutils.utils;
 
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -6,7 +6,7 @@ import org.bukkit.util.Vector;
 
 import java.util.Objects;
 
-public class PKWPlot {
+public class Plot {
   public static final int PLOT_CHUNK_SIZE_X = 5;
   public static final int PLOT_CHUNK_SIZE_Z = 4;
   public static final int STRUCTURE_LOWEST_Y = 64;
@@ -25,19 +25,19 @@ public class PKWPlot {
   /// Starting from 0, adding 1 for every (PlotChunkSizeZ * 16)
   public int z;
 
-  public PKWPlot(int x, int z) {
+  public Plot(int x, int z) {
     this.x = x;
     this.z = z;
   }
 
   /// Loc may be anywhere in the plot
   public static Location goldBlock(Location loc) {
-    PKWPlot plot = from(loc);
+    Plot plot = from(loc);
 
     return goldBlock(plot, loc.getWorld());
   }
 
-  public static Location goldBlock(PKWPlot plot, World world) {
+  public static Location goldBlock(Plot plot, World world) {
     return new Location(
       world,
       plot.x * (PLOT_CHUNK_SIZE_X * 16),
@@ -46,7 +46,7 @@ public class PKWPlot {
     );
   }
 
-  public static PKWPlot from(Location loc) {
+  public static Plot from(Location loc) {
     int x = loc.getBlockX() >= 0
       ? loc.getBlockX() / (PLOT_CHUNK_SIZE_X * 16)
       : (loc.getBlockX() / (PLOT_CHUNK_SIZE_X * 16)) - 1;
@@ -54,7 +54,7 @@ public class PKWPlot {
       ? loc.getBlockZ() / (PLOT_CHUNK_SIZE_Z * 16)
       : (loc.getBlockZ() / (PLOT_CHUNK_SIZE_Z * 16)) - 1;
 
-    return new PKWPlot(x, z);
+    return new Plot(x, z);
   }
 
   // ---
@@ -65,7 +65,7 @@ public class PKWPlot {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
 
-    PKWPlot pkwPlotId = (PKWPlot) o;
+    Plot pkwPlotId = (Plot) o;
     return x == pkwPlotId.x && z == pkwPlotId.z;
   }
 

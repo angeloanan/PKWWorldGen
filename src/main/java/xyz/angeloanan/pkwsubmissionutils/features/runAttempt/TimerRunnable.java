@@ -1,20 +1,20 @@
-package xyz.angeloanan.pkwsubmissionutils;
+package xyz.angeloanan.pkwsubmissionutils.features.runAttempt;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
-import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
+import xyz.angeloanan.pkwsubmissionutils.Plugin;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-public class PKWTimerRunnable extends BukkitRunnable {
+public class TimerRunnable extends BukkitRunnable {
   private final Plugin plugin;
   private final Map<UUID, Integer> playerTimer;
 
-  public PKWTimerRunnable(Plugin plugin, HashMap<UUID, Integer> map) {
+  public TimerRunnable(Plugin plugin, HashMap<UUID, Integer> map) {
     this.plugin = plugin;
     playerTimer = map;
   }

@@ -4,8 +4,9 @@ import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Particle;
 import org.bukkit.scheduler.BukkitRunnable;
+import xyz.angeloanan.pkwsubmissionutils.utils.Plot;
 
-public class PKWBorderParticleSpawner extends BukkitRunnable {
+public class BorderParticleSpawner extends BukkitRunnable {
   private final Plugin plugin = Plugin.THIS;
   public static final Particle.DustOptions DustOpt = new Particle.DustOptions(
       org.bukkit.Color.fromRGB(255, 0, 0),
@@ -35,7 +36,7 @@ public class PKWBorderParticleSpawner extends BukkitRunnable {
     plugin.getServer().getOnlinePlayers().forEach(player -> {
       if (player.getGameMode() != GameMode.CREATIVE) return;
 
-      PKWPlot plot = PKWPlot.from(player.getLocation());
+      Plot plot = Plot.from(player.getLocation());
 
     });
   }

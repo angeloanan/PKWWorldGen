@@ -1,4 +1,4 @@
-package xyz.angeloanan.pkwsubmissionutils;
+package xyz.angeloanan.pkwsubmissionutils.features.runAttempt;
 
 import net.kyori.adventure.key.Key;
 import net.kyori.adventure.sound.Sound;
@@ -15,16 +15,17 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerGameModeChangeEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
-import xyz.angeloanan.pkwsubmissionutils.Events.PlayerVoidOutOfBoundsTeleportEvent;
+import xyz.angeloanan.pkwsubmissionutils.Plugin;
+import xyz.angeloanan.pkwsubmissionutils.utils.events.PlayerVoidOutOfBoundsTeleportEvent;
 
 import java.util.HashMap;
 import java.util.UUID;
 
-public class PKWTimerEventHandler implements Listener {
+public class TimerEventHandler implements Listener {
   HashMap<UUID, Integer> playerTimer = new HashMap<>();
 
-  public PKWTimerEventHandler() {
-    new PKWTimerRunnable(Plugin.THIS, playerTimer).runTaskTimer(Plugin.THIS, 0, 1);
+  public TimerEventHandler() {
+    new TimerRunnable(Plugin.THIS, playerTimer).runTaskTimer(Plugin.THIS, 0, 1);
   }
 
   @EventHandler

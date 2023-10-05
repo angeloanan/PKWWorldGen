@@ -1,4 +1,4 @@
-package xyz.angeloanan.pkwsubmissionutils.ChunkGen;
+package xyz.angeloanan.pkwsubmissionutils.features.world.chunkGen;
 
 import org.bukkit.block.Biome;
 import org.bukkit.generator.WorldInfo;

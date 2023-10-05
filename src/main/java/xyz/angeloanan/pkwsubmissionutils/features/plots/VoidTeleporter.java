@@ -1,4 +1,4 @@
-package xyz.angeloanan.pkwsubmissionutils;
+package xyz.angeloanan.pkwsubmissionutils.features.plots;
 
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
@@ -7,17 +7,18 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
-import xyz.angeloanan.pkwsubmissionutils.Events.PlayerVoidOutOfBoundsTeleportEvent;
+import xyz.angeloanan.pkwsubmissionutils.utils.events.PlayerVoidOutOfBoundsTeleportEvent;
+import xyz.angeloanan.pkwsubmissionutils.utils.Plot;
 
-public class PKWTeleporter implements Listener {
+public class VoidTeleporter implements Listener {
   void teleportToNearestGold(Player player) {
     Location playerLoc = player.getLocation();
-    PKWPlot plot = PKWPlot.from(playerLoc.add(PKWPlot.PLAYER_PLOT_OFFSET));
+    Plot plot = Plot.from(playerLoc.add(Plot.PLAYER_PLOT_OFFSET));
 
     playerLoc.set(
-      (plot.x * PKWPlot.PLOT_CHUNK_SIZE_X * 16) - 1.5,
-      PKWPlot.STRUCTURE_LOWEST_Y + 12,
-      (plot.z * PKWPlot.PLOT_CHUNK_SIZE_Z * 16) + 11.5
+      (plot.x * Plot.PLOT_CHUNK_SIZE_X * 16) - 1.5,
+      Plot.STRUCTURE_LOWEST_Y + 12,
+      (plot.z * Plot.PLOT_CHUNK_SIZE_Z * 16) + 11.5
     );
     playerLoc.setYaw(-90);
     playerLoc.setPitch(0);
@@ -29,7 +30,7 @@ public class PKWTeleporter implements Listener {
   void onPlayerVoid(PlayerMoveEvent e) {
     Player player = e.getPlayer();
     int tpHeight = player.getGameMode() == GameMode.SURVIVAL
-      ? PKWPlot.STRUCTURE_LOWEST_Y - 15
+      ? Plot.STRUCTURE_LOWEST_Y - 15
       : 40;
 
     if (player.getLocation().getY() <= tpHeight) {

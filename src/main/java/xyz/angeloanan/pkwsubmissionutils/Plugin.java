@@ -5,10 +5,15 @@ import org.bukkit.Bukkit;
 import org.bukkit.generator.ChunkGenerator;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
-import xyz.angeloanan.pkwsubmissionutils.ChunkGen.Generator;
-import xyz.angeloanan.pkwsubmissionutils.Commands.BubbleCommand;
-import xyz.angeloanan.pkwsubmissionutils.Commands.CheckpointJumpCommand;
-import xyz.angeloanan.pkwsubmissionutils.Commands.TpPlotCommand;
+import xyz.angeloanan.pkwsubmissionutils.features.world.WorldConfigSetter;
+import xyz.angeloanan.pkwsubmissionutils.features.world.chunkGen.Generator;
+import xyz.angeloanan.pkwsubmissionutils.commands.BubbleCommand;
+import xyz.angeloanan.pkwsubmissionutils.commands.CheckpointJumpCommand;
+import xyz.angeloanan.pkwsubmissionutils.commands.TpPlotCommand;
+import xyz.angeloanan.pkwsubmissionutils.features.plots.PlotAnnouncer;
+import xyz.angeloanan.pkwsubmissionutils.features.plots.VoidTeleporter;
+import xyz.angeloanan.pkwsubmissionutils.features.runAttempt.TimerEventHandler;
+import xyz.angeloanan.pkwsubmissionutils.features.world.WorldOutOfBoundsHandler;
 
 import java.util.logging.Level;
 
@@ -25,13 +30,13 @@ public final class Plugin extends JavaPlugin {
     commandManager.registerCommand(new TpPlotCommand());
 
     PluginManager pluginManager = Bukkit.getPluginManager();
-    pluginManager.registerEvents(new PKWWorldConfigSetter(), this);
-    pluginManager.registerEvents(new PKWTeleporter(), this);
-    pluginManager.registerEvents(new PKWTimerEventHandler(), this);
-    pluginManager.registerEvents(new PKWPlotAnnouncer(), this);
-    pluginManager.registerEvents(new PKWOutOfBoundsHandler(), this);
+    pluginManager.registerEvents(new WorldConfigSetter(), this);
+    pluginManager.registerEvents(new VoidTeleporter(), this);
+    pluginManager.registerEvents(new TimerEventHandler(), this);
+    pluginManager.registerEvents(new PlotAnnouncer(), this);
+    pluginManager.registerEvents(new WorldOutOfBoundsHandler(), this);
 
-    new PKWBorderParticleSpawner().runTaskTimer(Plugin.THIS, 0, 20);
+    new BorderParticleSpawner().runTaskTimer(Plugin.THIS, 0, 20);
 
     getLogger().log(Level.INFO, "PKWSubmissionUtils was enabled successfully.");
   }

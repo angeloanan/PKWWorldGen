@@ -1,4 +1,4 @@
-package xyz.angeloanan.pkwsubmissionutils.Events;
+package xyz.angeloanan.pkwsubmissionutils.utils.events;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;

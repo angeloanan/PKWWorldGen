@@ -1,4 +1,4 @@
-package xyz.angeloanan.pkwsubmissionutils;
+package xyz.angeloanan.pkwsubmissionutils.features.plots;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
@@ -8,18 +8,19 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
+import xyz.angeloanan.pkwsubmissionutils.utils.Plot;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-public class PKWPlotAnnouncer implements Listener {
-  private final Map<UUID, PKWPlot> playerLocation = new HashMap<>();
+public class PlotAnnouncer implements Listener {
+  private final Map<UUID, Plot> playerLocation = new HashMap<>();
 
   @EventHandler
   void onPlayerJoin(PlayerJoinEvent e) {
     Player player = e.getPlayer();
-    playerLocation.put(player.getUniqueId(), PKWPlot.from(player.getLocation()));
+    playerLocation.put(player.getUniqueId(), Plot.from(player.getLocation()));
   }
 
   @EventHandler
@@ -28,8 +29,8 @@ public class PKWPlotAnnouncer implements Listener {
 
     Player player = e.getPlayer();
 
-    PKWPlot prevPlot = playerLocation.get(player.getUniqueId());
-    PKWPlot currentPlotId = PKWPlot.from(player.getLocation().add(PKWPlot.PLAYER_PLOT_OFFSET));
+    Plot prevPlot = playerLocation.get(player.getUniqueId());
+    Plot currentPlotId = Plot.from(player.getLocation().add(Plot.PLAYER_PLOT_OFFSET));
     //                                                        ^ Plot offset, prob need refactor
 
     if (!currentPlotId.equals(prevPlot)) {
@@ -38,7 +39,7 @@ public class PKWPlotAnnouncer implements Listener {
     }
   }
 
-  void announcePlotId(Player player, PKWPlot plot) {
+  void announcePlotId(Player player, Plot plot) {
     TextComponent text = Component
       .text("Visiting plot ")
       .append(

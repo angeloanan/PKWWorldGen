@@ -1,4 +1,4 @@
-package xyz.angeloanan.pkwsubmissionutils.ChunkGen;
+package xyz.angeloanan.pkwsubmissionutils.features.world.chunkGen;
 
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -7,15 +7,15 @@ import org.bukkit.generator.ChunkGenerator;
 import org.bukkit.generator.WorldInfo;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import xyz.angeloanan.pkwsubmissionutils.PKWPlot;
+import xyz.angeloanan.pkwsubmissionutils.utils.Plot;
 
 import java.util.Random;
 
 public class Generator extends ChunkGenerator {
-  int STRUCTURE_PATTERN_CHUNK_SIZE_X = PKWPlot.PLOT_CHUNK_SIZE_X;
-  int STRUCTURE_PATTERN_CHUNK_SIZE_Z = PKWPlot.PLOT_CHUNK_SIZE_Z;
+  int STRUCTURE_PATTERN_CHUNK_SIZE_X = Plot.PLOT_CHUNK_SIZE_X;
+  int STRUCTURE_PATTERN_CHUNK_SIZE_Z = Plot.PLOT_CHUNK_SIZE_Z;
 
-  int STRUCTURE_PATTERN_LOWEST_Y = PKWPlot.STRUCTURE_LOWEST_Y;
+  int STRUCTURE_PATTERN_LOWEST_Y = Plot.STRUCTURE_LOWEST_Y;
 
   // ---
 

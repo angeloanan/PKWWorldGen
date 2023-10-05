@@ -1,4 +1,4 @@
-package xyz.angeloanan.pkwsubmissionutils.Commands;
+package xyz.angeloanan.pkwsubmissionutils.commands;
 
 import co.aikar.commands.BaseCommand;
 import co.aikar.commands.annotation.CommandAlias;

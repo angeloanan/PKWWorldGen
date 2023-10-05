@@ -1,4 +1,4 @@
-package xyz.angeloanan.pkwsubmissionutils;
+package xyz.angeloanan.pkwsubmissionutils.features.world;
 
 import org.bukkit.Difficulty;
 import org.bukkit.GameMode;
@@ -9,8 +9,9 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.world.WorldLoadEvent;
+import xyz.angeloanan.pkwsubmissionutils.Plugin;
 
-public class PKWWorldConfigSetter implements Listener {
+public class WorldConfigSetter implements Listener {
   @EventHandler
   void onWorldLoad(WorldLoadEvent e) {
     World world = e.getWorld();
